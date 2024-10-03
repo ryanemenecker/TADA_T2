@@ -7,11 +7,24 @@ TADA_T2
 
 A Tensorflow2 compatible version of the TADA transcriptional activation domain predictor.
 
+# Installation
+
+**Section to be updated soon**
+
+
 # Usage
 
 This documentation covers the functions for predicting TAD scores using the TADA model. The available functions are `predict` and `predict_from_fasta`.
   
 **NOTE** At this time sequences must be 40 amino acids!!!
+
+First import the functions. 
+
+```python
+from TADA_T2.TADA import predict, predict_from_fasta
+```
+  
+Now you should be ready to go!
 
 ## predict
   
