@@ -37,7 +37,7 @@ Morffy, N., Van den Broeck, L., Miller, C. et al. Identification of plant transc
 
 To install from PyPI, run:
 ```bash
-    pip install TADA_T2
+    pip install TADA-T2
 ```
 
 You can also install the current development version from
