@@ -8,7 +8,6 @@ import importlib.resources
 import numpy as np
 import alphaPredict as alpha
 from localcider.sequenceParameters import SequenceParameters
-from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
 
 def get_scaler_path():

@@ -1,6 +1,7 @@
 """Provide the primary functions."""
 
 import protfasta
+import os
 from TADA_T2.backend.predictor import predict_tada
 
 def predict(sequences, return_dict=False):
@@ -24,11 +25,24 @@ def predict(sequences, return_dict=False):
     if isinstance(sequences, str):
         sequences=[sequences]
 
-    predictions = predict_tada(sequences)
+    # get sequence lengths
+    seq_lengths=[len(seq) for seq in sequences]
+    # check if sequences are too long
+    if any([length>40 for length in seq_lengths]):
+        raise ValueError('Sequences must be 40 amino acids.')
+    # check if sequences are too short
+    if any([length<40 for length in seq_lengths]):
+        raise ValueError('Sequences must be 40 amino acids.')
 
+    # run predictions
+    predictions = predict_tada(sequences)
+    
+    # if return dict, reutrn a dict
     if return_dict:
         predictions=dict(zip(sequences, predictions))
     return predictions
+
+print(predict('GS'*21))
 
 
 def predict_from_fasta(path_to_fasta):
@@ -47,9 +61,20 @@ def predict_from_fasta(path_to_fasta):
         and then a list as the values where the first element is the sequence
         and the second element is the TADA score. 
     """
+    # make sure that path is valid
+    if not os.path.exists(path_to_fasta):
+        raise ValueError('Path does not exist.')
     sequences=protfasta.read_fasta(path_to_fasta, invalid_sequence_action='convert')
     seq_names=list(sequences.keys())
     sequences=list(sequences.values())
+
+    # make sure sequences are 40 amino acids long.
+    seq_lengths=[len(seq) for seq in sequences]
+    if any([length>40 for length in seq_lengths]):
+        raise ValueError('Sequences must be 40 amino acids.')
+    if any([length<40 for length in seq_lengths]):
+        raise ValueError('Sequences must be 40 amino acids.')
+
     predictions=predict_tada(sequences)
     seqs_predictions=list(zip(sequences,predictions))
     return dict(zip(seq_names,seqs_predictions))
