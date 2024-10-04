@@ -6,7 +6,7 @@ for original implementation of the model.
 '''
 import importlib.resources
 
-from tensorflow import nn, matmul, reduce_sum
+from tensorflow import nn, matmul, reduce_sum, constant
 from tensorflow.keras import layers, regularizers, metrics, models, optimizers
 from tensorflow.keras.models import Sequential
 

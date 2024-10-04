@@ -2,6 +2,7 @@
 code for predictor.
 '''
 import importlib.resources
+from tensorflow import convert_to_tensor
 
 # package imports
 from TADA_T2.backend.features import create_features, scale_features_predict
@@ -13,6 +14,9 @@ def get_model_path():
     '''
     model_weights_path = importlib.resources.files('TADA_T2.data') / 'tada.14-0.02.hdf5'
     return str(model_weights_path)
+
+# trying to avoid recreating the model multiple times
+model_cache = None  # Global variable to store the model
 
 def predict_tada(sequences, return_both_values=False):
     '''
@@ -32,6 +36,8 @@ def predict_tada(sequences, return_both_values=False):
     list
         List of TADA scores for each input sequence.
     '''
+    global model_cache  # Use the cached model
+
     if not isinstance(sequences, list):
         raise Exception('Sequences must be input as a list!')
 
@@ -41,13 +47,18 @@ def predict_tada(sequences, return_both_values=False):
     LENGTH = 40
 
     # get scaled features
-    features_scaled = scale_features_predict(create_features(sequences, SEQUENCE_WINDOW, STEPS))
-    # Load the model
-    model = TadaModel().create_model()
-    # Load weights
-    model.load_weights(str(get_model_path()))
+    features =create_features(sequences, SEQUENCE_WINDOW, STEPS)
+    features =  scale_features_predict(features)
+    features = convert_to_tensor(features)
+
+    # check cached model
+    if model_cache is None:
+        # Load the model
+        model_cache = TadaModel().create_model()
+        # Load weights
+        model_cache.load_weights(str(get_model_path()))
     # run predictions
-    predictions = model.predict(features_scaled, verbose=0)
+    predictions = model_cache.predict(features, verbose=0)
     # return predictions. 
     if return_both_values:
         return predictions
