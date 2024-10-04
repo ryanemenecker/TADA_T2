@@ -203,6 +203,9 @@ fasta_predictions = predict_from_fasta(fasta_file, safe_mode=False, pad='random'
 ```
 
 # Version history
+## v0.11.0 (October 4, 2024)
+* Fixed import errors.
+
 ## v0.1.0 (October 4, 2024)
 * Initial release of TADA_T2
 
