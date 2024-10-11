@@ -1,3 +1,5 @@
 include CODE_OF_CONDUCT.md
 
+graft TADA_T2
+
 global-exclude *.py[cod] __pycache__ *.so
