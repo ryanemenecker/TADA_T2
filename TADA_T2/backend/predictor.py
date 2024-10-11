@@ -4,9 +4,10 @@ code for predictor.
 import importlib.resources
 from tensorflow import convert_to_tensor
 
+
 # package imports
-from .features import create_features, scale_features_predict
-from .model import TadaModel
+from TADA_T2.backend.features import create_features, scale_features_predict
+from TADA_T2.backend.model import TadaModel
 
 def get_model_path():
     ''' 

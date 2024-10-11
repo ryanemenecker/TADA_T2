@@ -3,8 +3,8 @@
 import protfasta
 import os
 
-from .backend.predictor import predict_tada as _predict_tada
-from .backend.utils import make_sequences_constant_length, map_sequences_to_prediction, verbose_warning_message
+from TADA_T2.backend.predictor import predict_tada as _predict_tada
+from TADA_T2.backend.utils import make_sequences_constant_length, map_sequences_to_prediction, verbose_warning_message
 
 
 def predict(sequences, overlap_length=39, pad='GS', approach='even', verbose=True, safe_mode=True):
