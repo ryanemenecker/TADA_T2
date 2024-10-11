@@ -27,29 +27,31 @@ For sequences longer than 40 amino acids, TADA_T2 uses a 'sliding window' approa
 For sequences shorter than 40 amino acids, TADA_T2 will pad the sequence with 'X' amino acids to make the sequence 40 amino acids long. You can choose to pad the sequence evenly or on the N- or C-terminus. Further, you can pad the sequence with just G and S or a random selection of amino acids. **This is NOT ideal** and we recommend that you do not use TADA_T2 to predict TAD scores for sequences shorter than 40 amino acids. However, this functionality is available for users if you set ``safe_mode=False``. Because the predictor was not made for this, the predictions may not be accurate. Thus, by default we restrict the availablity of this feature. 
 
 ## How can I cite TADA or TADA_T2?
-Please cite the original publication at https://www.nature.com/articles/s41586-024-07707-3. If you use TADA_T2, please mention in your methods that you used TADA_T2 to generate your predictions and link to this repository so your readers know exactly how you got your results and so that they can use TADA_T2 if they would like to.
+Please cite the [original publication](https://www.nature.com/articles/s41586-024-07707-3). If you use TADA_T2, please mention in your methods that you used TADA_T2 to generate your predictions and link to this repository so your readers know exactly how you got your results and so that they can use TADA_T2 if they would like to.
 
 ### Citation:
-Morffy, N., Van den Broeck, L., Miller, C. et al. Identification of plant transcriptional activation domains. Nature 632, 166–173 (2024). https://doi.org/10.1038/s41586-024-07707-3
+[Morffy, N., Van den Broeck, L., Miller, C. et al. Identification of plant transcriptional activation domains. Nature 632, 166–173 (2024)](https://doi.org/10.1038/s41586-024-07707-3)
 
+## Using TADA in Google Colab
+Basic functionality of TADA_T2 is also available in [Google Colab](https://colab.research.google.com/drive/1g4tkklihI-dIZV5BEHpPgpqtvofw1BFV?usp=sharing). This let's you generate TADA scores from sequences or from .fasta files without having to locally intall TADA_T2!
 
 # Installation
 
 To install from PyPI, run:
 ```bash
-    pip install TADA-T2
+pip install TADA-T2
 ```
 
 You can also install the current development version from
 ```bash
-    pip install git+https://git@github.com/ryanemenecker/TADA_T2
+pip install git+https://git@github.com/ryanemenecker/TADA_T2
 ```
 
 To clone the GitHub repository and gain the ability to modify a local copy of the code, run
 ```bash
-    git clone https://github.com/ryanemenecker/TADA_T2.git
-    cd TADA_T2
-    pip install -e .
+git clone https://github.com/ryanemenecker/TADA_T2.git
+cd TADA_T2
+pip install -e .
 ```
 
 # Usage
