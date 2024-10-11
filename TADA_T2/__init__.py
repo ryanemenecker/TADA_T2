@@ -1,6 +1,6 @@
 """A Tensorflow2 compatible version of the TADA transcriptional activation domain predictor."""
 
 # Add imports here
-from .TADA import *
+from TADA_T2.TADA import *
 
-from ._version import __version__
+from TADA_T2._version import __version__
