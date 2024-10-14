@@ -8,7 +8,11 @@ TADA_T2 is a Tensorflow2 compatible version of the TADA transcriptional activati
 Credit to Lisa Van den Broeck for creating the original implementation of TADA. The original implementation can be found [here](https://github.com/LisaVdB/TADA).
 
 ## What does my TAD score mean?
-TAD scores range between 0 and 1 where 0 means that the model **predicts** the protein sequence will *not* be a transcriptional activator and 1 means that the model **predicts** the protein sequence *will* be a transcriptional activator. Note that **the values are only predictions and should be treated as such**. Nothing can substitute for experimental validation; however, the TADA scores can be used as a guide to help generate new hypotheses or plan new experiments. 
+TAD scores range between 0 and 1 where lower values are predicted less likely to be TADs and higher values are predicted more likely to be TADs. Note that **the values are predictions and should be treated as such**. Nothing can substitute for experimental validation; however, the TADA scores can be used as a guide to help generate new hypotheses or plan new experiments. 
+
+### Is there a threshold value above which something should be considered likely to be a TAD?
+Given that TAD scores are continuous from 0 to 1, in general a higher score means a greater probability that your sequence functions as a TAD. However, in the original publication, the authors used a threshold such **that scores above 0.5** would be classified as TADs. This is a good starting point, but *it is important to remember that this is an arbitrary threshold and that the TADA scores should be used as a guide and not as a definitive answer*.
+
 
 ## How were the transcriptional activation domains originally identified?
 To simplify things a bit, the original activation domains were identified using a high-throughput assay in *Saccharomyces cerevisiae* that assessed the ability of tens of thousands of different 40 amino acid fragments to drive transcription of a reporter. For more information on the actual assay, please see the [publication](https://www.nature.com/articles/s41586-024-07707-3).
@@ -205,6 +209,12 @@ fasta_predictions = predict_from_fasta(fasta_file, safe_mode=False, pad='random'
 ```
 
 # Version history
+
+## v0.14.0 (October 14, 2024)
+* Fixed problems with downloading TADA_T2 from PyPi.
+* Updated README.md to clarify what TAD scores mean.
+* Skipped multiple version numbers because I'm really good at this.
+
 ## v0.11.0 (October 4, 2024)
 * Fixed import errors.
 
